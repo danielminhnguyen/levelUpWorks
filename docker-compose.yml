@@ -17,7 +17,7 @@ services:
       MYSQL_HOST: localhost
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - 14330:14330
     restart: unless-stopped
     volumes:
       - ./db/levelUpWorks.sql:/docker-entrypoint-initdb.d/levelUpWorks.sql
