@@ -4,6 +4,7 @@ x-common-variables: &common-variables
   MYSQL_USER: sampleuser
   MYSQL_PASSWORD: samplepassword
   MYSQL_DATABASE: sampledb
+  MYSQL_PORT: 3306
   REACT_APP_SERVER_PORT: 8000
 
 services:
@@ -19,7 +20,7 @@ services:
       - 3306:3306
     restart: unless-stopped
     volumes:
-      - ./db/sample.sql:/docker-entrypoint-initdb.d/sample.sql
+      - ./db/levelUpWorks.sql:/docker-entrypoint-initdb.d/levelUpWorks.sql
   phpmyadmin:
     depends_on:
       - mysql-db

@@ -2,10 +2,10 @@ import fs from "fs";
 import mysql from "mysql2";
 
 export const local = {
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "missionx",
+  host: process.env.MYSQL_HOST_IP || "localhost",
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE || "levelUpWorks",
 };
 
 let certificate;
@@ -24,6 +24,6 @@ export const scaleGrid = {
   ssl: { ca: certificate },
 };
 
-const db = mysql.createConnection(scaleGrid);
+const db = mysql.createConnection(local);
 
 export default db;
