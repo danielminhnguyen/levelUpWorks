@@ -50,8 +50,6 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]()
-
 ### Built With
 
 - [react](https://reactjs.org)
@@ -102,6 +100,10 @@ The problems are identify through user interview (teacher) and business case sce
    docker-compose up -d
    ```
 
+You should be able to see it running in Docker
+
+[![Product Name Screen Shot][docker-screenshot]]()
+
 <!-- USAGE EXAMPLES -->
 
 ## Usage
@@ -143,4 +145,4 @@ Project Link: [https://github.com/danielminhnguyen/levelUpWorks](https://github.
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: www.linkedin.com/in/danielminhnguyen
-[product-screenshot]: images/screenshot.png
+[docker-screenshot]: images/docker-image.png
