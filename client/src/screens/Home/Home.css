@@ -1,0 +1,231 @@
+.content-wrapper > section {
+  padding: 0 300px;
+}
+.header-bottom {
+  font-size: 1.5rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* background-color: #ededed; */
+  background-size: auto 40vh;
+  background-repeat: no-repeat;
+  background-position: right;
+  width: 100%;
+}
+.header-bottom .button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.header-bottom .button-wrapper > div {
+  margin: 1rem;
+}
+.header-bottom .button-wrapper .button-signup-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.header-bottom .button-wrapper .button-signup-wrapper p {
+  font-size: 0.8rem;
+  width: calc(100% - 10rem);
+}
+.header-bottom div h1 {
+  font-size: 3rem;
+}
+.header-bottom div h1 span {
+  color: #42c0f6;
+}
+.section-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.section-1 .section-column {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.section-1 .center-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section-1 .center-wrapper .icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.section-1 .center-wrapper .icon-wrapper .icon {
+  justify-content: space-evenly;
+  padding: 20px;
+  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  background: radial-gradient(circle, rgba(136, 219, 255, 1) 0%, rgba(66, 192, 246, 1) 50%);
+  box-shadow: 0px 4px 5px #e2e2e2;
+  padding: 20px;
+}
+.section-1 .center-wrapper .icon-wrapper .icon img {
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+.section-1 .center-wrapper .icon-wrapper .icon span {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  position: relative;
+  word-wrap: normal;
+  color: #fff;
+  font-weight: 600;
+}
+.section-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section-2 h2 > span {
+  font-weight: 400;
+}
+.section-2 .icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.section-2 .icon-wrapper .icon {
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  width: calc(100% / 4.5);
+  height: 200px;
+  align-items: center;
+  justify-items: center;
+  background: rgba(0, 0, 0, 1);
+  box-shadow: 0px 4px 5px #e2e2e2;
+  filter: brightness(90%);
+}
+.section-2 .icon-wrapper .icon img {
+  margin: 0;
+  position: relative;
+  transform: scale(1.2);
+  align-self: center;
+  margin: 1.5rem 0;
+}
+.section-2 .icon-wrapper .icon span {
+  width: 15rem;
+  font-size: 1.5rem;
+  position: relative;
+  word-wrap: normal;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.section-3 {
+  background-color: #efeff1;
+  align-content: center;
+  padding: 0 5rem;
+  width: 100%;
+}
+.section-3 .tabs ol.tab-list::before {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: white;
+  content: " ";
+  z-index: 1;
+}
+.section-3 .tabs .tab-list {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 2rem 0;
+  z-index: 9;
+  position: relative;
+}
+.section-3 .tabs .tab-list > * {
+  z-index: 5;
+}
+.section-3 .tabs .tab-list .tab-list-active:first-child {
+  border-bottom: solid 2px #43c0f6;
+}
+.section-3 .tabs .tab-list .tab-list-active {
+  background-color: #efeff1;
+}
+.section-3 .tabs .tab-list .tab-list-item {
+  max-width: 300px;
+  border: solid 0.3rem #43c0f6;
+  border-radius: 0.8rem;
+  display: inline-block;
+  width: 30rem;
+  text-align: center;
+  margin: 0 1rem;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+}
+.section-3 .tabs .tab-content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5rem;
+}
+.section-3 .tabs .tab-content .section3-list {
+  display: flex;
+  flex-direction: column;
+}
+.section-3 .tabs .tab-content .section3-list .tab-item {
+  display: flex;
+  flex-direction: row;
+}
+.section-3 .tabs .tab-content .section3-list .description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.section-3 .tabs .tab-content .section3-list .description span {
+  font-weight: 800;
+}
+.section-3 .tabs .tab-content .section3-list .description p {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+.section-4 {
+  margin: 3rem 0rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.section-4 button {
+  margin: 1rem;
+}
+.section-4 div {
+  margin: 2rem;
+
+  position: relative;
+}
+.section-4 div h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+.section-4 div span {
+  font-size: 2rem;
+}
+.section-4 div img {
+  width: 100%;
+}
+
+.header-image {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  object-fit: cover;
+  height: 450px;
+}

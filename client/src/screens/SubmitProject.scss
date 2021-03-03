@@ -1,0 +1,16 @@
+.submit-project-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 50px;
+  * {
+    margin: 20px;
+  }
+  button {
+    background-color: #f91c85;
+    width: 200px;
+    height: 100px;
+    color: white;
+    border-radius: 20px;
+  }
+}
