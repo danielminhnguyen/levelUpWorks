@@ -1,8 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import littleRocket from "../assets/images/littleRocket.png";
+import skillzBadges from "../assets/images/skillzbadges.png";
 
-const lightGreyColor = "#F4F4F6";
+const lightGreyColor = "#F0F0F0";
 const orangeColor = "#F9B953";
 
 const useStyles = makeStyles({
@@ -40,6 +43,7 @@ const useStyles = makeStyles({
     textAlign: "left",
     padding: "10px",
     maxWidth: "200px",
+    minWidth: "200px",
     fontFamily: "Open Sans",
   },
   profileImage: {
@@ -53,17 +57,19 @@ const useStyles = makeStyles({
   topDivQuarter: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flexStart",
+    justifyContent: "flex-start",
     alignItems: "center",
-    width: "15vw",
+    width: "auto",
+    marginLeft: "20px",
   },
   quarterTop: {
     fontSize: "1.8em",
+    width: "auto",
     color: "black",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flexstart",
+    alignItems: "flex-start",
   },
   quarterBot: {
     fontSize: "1.8em",
@@ -72,6 +78,14 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  skillzBadges: {
+    fontSize: "1.8em",
+    color: "black",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
   hunnitPercGrey: {
     backgroundColor: lightGreyColor,
@@ -92,6 +106,10 @@ const useStyles = makeStyles({
     color: "black",
     fontWeight: 600,
   },
+  superPowerDiv: {
+    width: "15vw",
+    fontSize: "1.8em",
+  },
   superPowers: {
     textAlign: "left",
     display: "flex",
@@ -105,38 +123,34 @@ const useStyles = makeStyles({
   botDiv: {
     display: "flex",
   },
-  inputText: {
-    height: "40px",
-    border: "0px",
-    marginLeft: "20px",
-    marginRight: "20px",
-  },
   h4: {
     fontSize: "2em",
     color: "black",
     textAlign: "left",
     marginLeft: "20px",
   },
-  thirdDiv: {
-    border: "2px solid black",
-    width: "14vw",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flexStart",
-  },
-  botDivLeft: {
-    width: "60vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+  botDivForm: {
     backgroundColor: lightGreyColor,
-    padding: "20px",
     borderRadius: "8px",
-    marginTop: "20px",
+    padding: "50px",
+  },
+  botDivFormObject: {
+    "& h4": {
+      fontSize: "1.5em",
+      margin: "0px",
+    },
+    "& input": {
+      height: "50px",
+      border: "1px solid black",
+    },
+  },
+  littleRocketText: {
+    fontSize: "2em",
+    fontWeight: "600",
   },
   botDivRight: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
     width: "40vw",
   },
   exportButton: {
@@ -146,6 +160,9 @@ const useStyles = makeStyles({
     height: "50px",
     backgroundColor: lightGreyColor,
     padding: "20px",
+    position: "relative",
+    top: "135px",
+    left: "20px",
   },
   inline: {
     display: "flex",
@@ -156,6 +173,7 @@ const useStyles = makeStyles({
   botDivRightDiv: {
     width: "20vw",
     "& div": {
+      width: "200px",
       textAlign: "left",
       marginLeft: "10px",
       fontSize: "1.2em",
@@ -194,7 +212,11 @@ export default function Profile() {
           </div>
         </div>
         <div className={classes.topDivQuarter}>
-          <div className={classes.quarterTop}>
+          <img style={{ transform: "scale(0.7)" }} src={littleRocket} alt="" />
+          <div className={classes.littleRocketText}>L 06</div>
+        </div>
+        <div className={classes.topDivQuarter}>
+          <div className={classes.superPowerDiv}>
             <h3>SUPER POWERS</h3>
             <div className={classes.superPowers}>
               <div>Patience</div>
@@ -204,74 +226,98 @@ export default function Profile() {
           </div>
         </div>
         <div className={classes.topDivQuarter}>
-          <div className={classes.quarterTop}>
-            <img src="" alt="" />
-          </div>
-          <div className={classes.quarterBot}>
-            <Button className={classes.exportButton}>EXPORT</Button>
+          <div className={classes.skillzBadges}>
+            <h3>SKILLZ BADGES</h3>
+            <img
+              style={{
+                position: "relative",
+                bottom: "80px",
+                right: "180px",
+                transform: "scale(0.5)",
+              }}
+              src={skillzBadges}
+              alt=""
+            />
           </div>
         </div>
       </div>
       <div className={classes.botDiv}>
-        <div className={classes.botDivLeft}>
-          <div className={classes.third}>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>DOB</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>SCHOOL</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-          </div>
-          <div className={classes.third}>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>PARENT</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>EMAIL</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>PHONE</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-          </div>
-          <div className={classes.third}>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>TEACHER</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>EMAIL</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-            <div className={classes.thirdDiv}>
-              <h4 className={classes.h4}>PHONE</h4>
-              <input className={classes.inputText} type="text" />
-            </div>
-          </div>
+        <div className={classes.botDivForm}>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>DOB</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>SCHOOL</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}></Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>PARENT</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>EMAIL</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>PHONE</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>TEACHER</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>EMAIL</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <div className={classes.botDivFormObject}>
+                <h4>PHONE</h4>
+                <input type="text"></input>
+              </div>
+            </Grid>
+          </Grid>
         </div>
         <div className={classes.botDivRight}>
-          <div className={classes.botDivRightDiv}>
-            <h4 className={classes.h4}>PAYMENTS</h4>
-            <div>PAID</div>
-            <div>PENDING</div>
-            <div>SEND REMINDER</div>
-          </div>
-          <div className={classes.botDivRightDiv}>
-            <h4 className={classes.h4}>MEDICAL</h4>
-            <div className={classes.inline}>
-              <div>ALLERGIES</div>
-              <div>PEANUT</div>
+          <div style={{ display: "flex" }}>
+            <div className={classes.botDivRightDiv}>
+              <h4 className={classes.h4}>PAYMENTS</h4>
+              <div style={{ marginLeft: "12px" }}>
+                <div>PAID</div>
+                <div>PENDING</div>
+                <div>SEND REMINDER</div>
+              </div>
             </div>
-            <div className={classes.inline}>
-              <div>BLOODGROUP</div>
-              <div>A+</div>
+            <div className={classes.botDivRightDiv}>
+              <h4 className={classes.h4}>MEDICAL</h4>
+              <div className={classes.inline}>
+                <div>ALLERGIES</div>
+                <b>PEANUT</b>
+              </div>
+              <div className={classes.inline}>
+                <div>BLOODGROUP</div>
+                <b>A+</b>
+              </div>
             </div>
-            <Button className={classes.exportButton}>Export</Button>
           </div>
+          <Button className={classes.exportButton}>Export</Button>
         </div>
       </div>
     </div>

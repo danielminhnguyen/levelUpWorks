@@ -16,14 +16,14 @@ try {
 }
 
 export const scaleGrid = {
-  host: "SG-missionx-3623-master.servers.mongodirector.com",
+  host: "SG-mission6-3936-mysql-master.servers.mongodirector.com",
   user: "sgroot",
-  password: "5bvKqZwknrCS-ghu",
-  database: "missionx",
+  password: "8_pBDt3A7dVXNlkF",
+  database: "levelUpWorks",
   port: 3306,
   ssl: { ca: certificate },
 };
 
-const db = mysql.createConnection(local);
+const db = mysql.createConnection(scaleGrid);
 
 export default db;

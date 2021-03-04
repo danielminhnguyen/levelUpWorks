@@ -1,133 +1,130 @@
-import React, { useState } from "react";
+import React from "react";
 
 // components
-import ClassNames from "classnames";
+import classNames from "classnames";
 
 // graphics
-import { ReactComponent as Profile } from "assets/images/profile.svg";
-import { ReactComponent as Settings } from "assets/images/settings.svg";
-import { ReactComponent as Logout } from "assets/images/logout.svg";
+import { ReactComponent as Logo } from "assets/img/logo.svg";
 
 // material ui
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from "@material-ui/core";
-import useStyles from "./styles";
-import { signout } from "actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import {
+  Drawer,
+  List,
+  ListItemIcon,
+  ListItemText,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  fakeToolBar: {
+    ...theme.mixins.toolbar,
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+  logo: {
+    marginLeft: theme.spacing(5),
+  },
+  navigation: {
+    marginTop: theme.spacing(15),
+    paddingLeft: theme.spacing(15),
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 1,
+    overflow: "hidden",
+  },
+  paper: {
+    border: "none",
+    backgroundColor: "transparent",
+  },
+  iconContainer: {
+    width: 100,
+    height: 100,
+    backgroundColor: "#C4C4C4",
+    borderRadius: "50%",
+    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(3),
+    "&:hover ~ $hide": {
+      display: "block",
+    },
+    "&:hover": {
+      backgroundColor: "#F9B953",
+    },
+  },
+  navItem: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  label: {
+    fontWeight: 700,
+    textTransform: "uppercase",
+    textAlign: "left",
+  },
+  hide: {
+    display: "none",
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  active: {
+    backgroundColor: "#F9B953",
+  },
+}));
 
 export default function DashboardSide(props) {
   const classes = useStyles();
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  const dispatch = useDispatch();
-  const handleSignOut = () => {
-    dispatch(signout());
-  };
-  const { tabClick, routes, firstTab } = props;
+  // const userSignin = useSelector((state) => state.userSignin);
+  // const { userInfo } = userSignin;
+  // const userInfo = {};
+  // const dispatch = useDispatch();
+  // const handleSignOut = () => {
+  //   dispatch(signout());
+  // };
 
-  const [drawerOpen, setDrawerOpen] = useState(true);
-
-  const handleDrawerControl = () => {
-    setDrawerOpen(() => !drawerOpen);
-  };
-
+  const { tabClick, routes, activeTab } = props;
   return (
     <>
-      <div className={drawerOpen ? classes.fakeSideBarOpen : classes.fakeSideBarClose}></div>
       <Drawer
         variant="permanent"
-        className={
-          (classes.drawer,
-          ClassNames({
-            [classes.drawerOpen]: drawerOpen,
-            [classes.drawerClose]: !drawerOpen,
-          }))
-        }
-        classes={{
-          paperAnchorDockedLeft: ClassNames({
-            [classes.drawerOpen]: drawerOpen,
-            [classes.drawerClose]: !drawerOpen,
-          }),
-        }}
+        classes={{ paper: classes.paper }}
+        elevation={0}
       >
-        <div className={classes.fakeToolBar} />
-        <div>
-          <img className={classes.profileImage} src={userInfo.ProfilePic} alt="" />
+        <div className={classes.logo}>
+          <Logo />
         </div>
         <div className={classes.navigation}>
           <List>
             {routes.map((item) => (
-              <ListItem
-                key={item.id}
-                autoFocus={item.id === firstTab ? true : false}
-                button
-                classes={{ button: drawerOpen ? classes.sideButtonOpen : classes.sideButtonClose }}
-                onClick={() => tabClick(item.id)}
-              >
-                <ListItemIcon classes={{ root: drawerOpen ? classes.iconOpen : classes.iconClose }}>
-                  {item.icon}
-                </ListItemIcon>
+              <div className={classes.navItem}>
+                <div
+                  key={item.id}
+                  // autoFocus={item.id === firstTab ? true : false}
+                  className={classNames(
+                    classes.iconContainer,
+                    "column",
+                    activeTab === item.id ? classes.active : classes.nonActive
+                  )}
+                  onClick={() => tabClick(item.id)}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                </div>
                 <ListItemText
-                  className={ClassNames({ [classes.hide]: !drawerOpen })}
+                  className={classes.hide}
                   primary={
-                    <Typography className={classes.label} variant="h6">
+                    <Typography
+                      className={classNames(classes.label)}
+                      variant="h6"
+                    >
                       {item.label}
                     </Typography>
                   }
                 />
-              </ListItem>
+              </div>
             ))}
           </List>
-          <div className={ClassNames(!drawerOpen ? classes.grow : undefined)}></div>
-          <div>
-            <div
-              className={ClassNames({
-                [classes.caretContainerOpen]: drawerOpen,
-                [classes.caretContainerClose]: !drawerOpen,
-              })}
-            >
-              <div
-                className={ClassNames({
-                  [classes.rightCaret]: drawerOpen,
-                  [classes.leftCaret]: !drawerOpen,
-                })}
-                onClick={handleDrawerControl}
-              >
-                <div
-                  className={ClassNames({
-                    [classes.rightTriangle]: drawerOpen,
-                    [classes.leftTriangle]: !drawerOpen,
-                  })}
-                ></div>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div>
-          <div
-            className={ClassNames({
-              [classes.bottomMenuOpen]: drawerOpen,
-              [classes.bottomMenuClose]: !drawerOpen,
-            })}
-          >
-            <div className="column">
-              <Profile />
-              <Link to="/profile">
-                <Typography className={classes.bottomLabel}>Profile</Typography>
-              </Link>
-            </div>
-            <div className="column">
-              <Settings />
-              <Typography className={classes.bottomLabel}>Settings</Typography>
-            </div>
-            <div className="column" onClick={handleSignOut}>
-              <Logout />
-              <Typography className={classes.bottomLabel}>Log out</Typography>
-            </div>
-          </div>
-        </div>
-        <div className={classes.fakeToolBar} />
       </Drawer>
     </>
   );
