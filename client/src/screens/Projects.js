@@ -5,7 +5,9 @@ import React from "react";
 import { ReactComponent as BackDrop } from "assets/img/backdrop.svg";
 import classNames from "classnames";
 import StudentCard from "components/StudentCard";
+
 import { Students } from "constants/Students";
+
 
 const useStyles = makeStyles((theme) => ({
   backDrop: {
@@ -44,6 +46,12 @@ export default function Projects() {
         </Grid>
         <Grid item xs={6} className="column">
           <Typography variant="h4">Botany Downs Library</Typography>
+
+          <StudentCard />
+        </Grid>
+        <Grid item xs={6} className="column">
+          <Typography variant="h4">Epsom Girls Grammar School</Typography>
+
           <Grid container>
             {Students ? (
               Students.botany.map((student) => (
@@ -73,6 +81,7 @@ export default function Projects() {
               <div></div>
             )}
           </Grid>
+
         </Grid>
       </Grid>
     </>
