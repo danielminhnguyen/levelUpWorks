@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navigation: {
     marginTop: theme.spacing(15),
-    paddingLeft: theme.spacing(15),
+    paddingLeft: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,

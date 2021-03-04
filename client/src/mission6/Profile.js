@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   mainDiv: {
     display: "flex",
     flexDirection: "column",
-    padding: "50px",
+    padding: "30px",
     marginLeft: "auto",
     marginRight: "auto",
     width: "80vw",

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingLeft: 400,
+    paddingLeft: 250,
     height: "80vh",
     width: "100%",
     margin: theme.spacing(6),
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     width: "100%",
     // height: "75vh",
-    overflowX: "hidden",
+    // overflowX: "hidden",
     margin: theme.spacing(0),
   },
   middle: {
