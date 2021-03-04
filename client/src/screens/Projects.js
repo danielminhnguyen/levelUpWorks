@@ -1,8 +1,6 @@
-import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, makeStyles, Typography } from "@material-ui/core";
 
 import React from "react";
-
-import { ReactComponent as StudentProfile } from "assets/img/student-profile.svg";
 
 import { ReactComponent as BackDrop } from "assets/img/backdrop.svg";
 import classNames from "classnames";
