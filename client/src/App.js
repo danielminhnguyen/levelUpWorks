@@ -1,9 +1,10 @@
 import DashBoard from "layouts/Dashboard";
-import Main from "layouts/Main";
+// import Main from "layouts/Main";
 import Student from "mission6/Student";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Profile from "mission6/Profile";
+// import Home from "layouts/Home";
 
 export default function App() {
   return (
@@ -12,7 +13,10 @@ export default function App() {
         {/* <Route path="/dashboard" component={DashBoard} />
         <Route path="/projects/:projectid" component={DashBoard} />
         <Route path="/" component={Main} /> */}
-
+        <Route exact path="/">
+          <Redirect to="/dashboard" />
+        </Route>
+        <Route exact path="/dashboard" component={DashBoard} />
         <Route exact path="/student" component={Student} />
         <Route exact path="/profile" component={Profile} />
       </Switch>

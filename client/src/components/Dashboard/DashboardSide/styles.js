@@ -19,7 +19,6 @@ export default makeStyles((theme) => ({
   navigation: {
     display: "flex",
     flexDirection: "column",
-    color: "#ffffff",
     flexGrow: 1,
   },
   profileImage: {
@@ -77,15 +76,12 @@ export default makeStyles((theme) => ({
       },
     },
   },
-  iconOpen: {
+  icon: {
     minWidth: 35,
-  },
-  iconClose: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    "& svg": { width: 70, height: 70 },
+    minHeight: 35,
+    backgroundColor: "#C4C4C4",
+    padding: theme.spacing(3),
+    borderRadius: "50%",
   },
   label: {
     fontWeight: 700,
@@ -126,34 +122,6 @@ export default makeStyles((theme) => ({
   caretContainerClose: {
     display: "flex",
     justifyContent: "flex-start",
-  },
-  rightCaret: {
-    padding: 20,
-    backgroundColor: theme.palette.background.main,
-    borderTopLeftRadius: 20,
-    borderBottomLeftRadius: 20,
-    height: 80,
-  },
-  leftCaret: {
-    padding: 20,
-    backgroundColor: theme.palette.background.main,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    height: 80,
-  },
-  rightTriangle: {
-    width: 0,
-    height: 0,
-    borderTop: "20px solid transparent",
-    borderBottom: "20px solid transparent",
-    borderRight: "20px solid #f91c84",
-  },
-  leftTriangle: {
-    width: 0,
-    height: 0,
-    borderTop: "20px solid transparent",
-    borderBottom: "20px solid transparent",
-    borderLeft: "20px solid #f91c84",
   },
   hide: {
     display: "none",

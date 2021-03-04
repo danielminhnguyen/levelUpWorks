@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     bottom: 0,
     height: 60,
-    justifyContent: "center",
+    paddingRight: theme.spacing(3),
+    justifyContent: "flex-end",
     alignItems: "center",
     display: "flex",
     flexDirection: "row",
@@ -19,8 +20,13 @@ export default function DashboardBottom() {
   const classes = useStyles();
 
   return (
-    <AppBar color="default" position="fixed" className={classes.appbarBottom}>
-      <Typography variant="h5">© LevelUp Works 2020</Typography>
+    <AppBar
+      elevation={0}
+      color="transparent"
+      position="fixed"
+      className={classes.appbarBottom}
+    >
+      <Typography variant="h5">PREPARING YOUNG MINDS FOR THE FUTURE</Typography>
     </AppBar>
   );
 }

@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
+  overflow: hidden;
 }
 @media screen and (min-width: 1440px) {
   .header-bottom {
@@ -55,7 +56,6 @@ body {
   border: 0;
   padding: 0;
   box-sizing: border-box;
-  text-align: center;
 }
 ul {
   list-style: none;
@@ -167,6 +167,17 @@ input {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.flex-column-end {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-end;
+}
+
+.hide {
+  display: none;
 }
 
 #login-signup-switch .tabs .tab-list {

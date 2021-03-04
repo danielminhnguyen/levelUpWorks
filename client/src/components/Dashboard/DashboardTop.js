@@ -1,49 +1,82 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 //material ui
-import { AppBar, Button, makeStyles } from "@material-ui/core";
+import {
+  AppBar,
+  Badge,
+  fade,
+  IconButton,
+  InputBase,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 
 // graphics
-import FlagNZ from "assets/images/nz-flag.png";
-import FlagMaori from "assets/images/maori-flag.png";
-import logo from "assets/images/logo-dark.png";
-
+import { ReactComponent as Profile } from "assets/img/profile.svg";
+import SearchIcon from "@material-ui/icons/Search";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
+import { ReactComponent as CalendarIcon } from "assets/img/calendar-icon.svg";
 //components
-import { ProgressBarTop } from "components/ProgressBar/ProgressBar";
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
+    paddingTop: theme.spacing(2),
     justifyContent: "center",
     alignItems: "center",
     display: "flex",
     flexDirection: "row",
     zIndex: theme.zIndex.drawer + 1,
-    padding: "0px" + theme.spacing,
+    paddingRight: theme.spacing(5),
   },
   logo: {
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(4),
   },
-  buttonsWrapper: {
-    "& button": {
-      margin: theme.spacing(1),
-    },
-  },
-  button: {
-    backgroundColor: "#E5AB2C",
-    color: "#ffffff",
-  },
   grow: {
     flexGrow: 1,
   },
-  language: {
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(4),
-    "& *": {
-      marginLeft: theme.spacing(1),
+  search: {
+    position: "relative",
+    border: "solid 1px black",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
     },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto",
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+  profilePhoto: {
+    marginLeft: theme.spacing(5),
   },
 }));
 
@@ -52,48 +85,45 @@ DashboardTop.propTypes = {
 };
 
 export default function DashboardTop(props) {
-  const location = useLocation();
-  const sideLayout = location.pathname.split("/")[1];
+  // const location = useLocation();
+  // const sideLayout = location.pathname.split("/")[1];
   const classes = useStyles();
 
   return (
-    <AppBar color="default" position="fixed" className={classes.appbar}>
-      <Link to="/">
-        <img className={classes.logo} src={logo} alt=""></img>
-      </Link>
+    <AppBar
+      elevation={0}
+      color="transparent"
+      position="fixed"
+      className={classes.appbar}
+    >
       <div className={`row ${classes.grow}`}>
-        {sideLayout === "projects" ? (
-          <>
-            <div>
-              <p gutterBottom={true} variant="h4">
-                PROJECT
-              </p>
-              <p>Introduction</p>
-            </div>
-            <div>
-              <span>1</span>
-              <div>
-                <ProgressBarTop repeat={12} />
-              </div>
-            </div>
-          </>
-        ) : null}
         <div className={classes.grow}></div>
-        <div className={classes.buttonsWrapper}>
-          <Button variant="contained" className={classes.button}>
-            Take Screenshot
-          </Button>
-          <Button variant="contained" color="secondary">
-            Ask Teacher for help
-          </Button>
-          <Button variant="contained" color="primary">
-            <Link to={`/${props.layout}/projects`}>More Projects</Link>
-          </Button>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ "aria-label": "search" }}
+          />
         </div>
-      </div>
-      <div className={classes.language}>
-        <img src={FlagNZ} alt="language"></img>
-        <img src={FlagMaori} alt="language"></img>
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+          <Badge badgeContent={16} color="secondary">
+            <NotificationsNoneIcon fontSize="large" />
+          </Badge>
+        </IconButton>
+
+        <IconButton color="inherit">
+          <CalendarIcon />
+        </IconButton>
+        <Typography variant="h5">Howdy Alan</Typography>
+        <div className={classes.profilePhoto}>
+          <Profile />
+        </div>
       </div>
     </AppBar>
   );

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { makeStyles } from "@material-ui/core";
 
-import { DashboardTop, DashboardBottom, DashboardSide } from "components/Dashboard";
+import {
+  DashboardTop,
+  DashboardBottom,
+  DashboardSide,
+} from "components/Dashboard";
 
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useLocation, useParams } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { Redirect, useLocation, useParams } from "react-router-dom";
 import { Routes } from "constants/Routes";
-import { projectbuilder } from "actions/projectActions";
+// import { projectbuilder } from "actions/projectActions";
 
 const useStyles = makeStyles((theme) => ({
   dashboard: {
@@ -20,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
+    paddingLeft: 400,
     height: "80vh",
     width: "100%",
     margin: theme.spacing(6),
     padding: theme.spacing(6),
-    backgroundColor: theme.palette.background.light,
+    // backgroundColor: theme.palette.background.light,
     borderRadius: "40px",
   },
   content: {
@@ -43,29 +48,35 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DashBoard(props) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const sideLayout = location.pathname.split("/")[1];
+  // const dispatch = useDispatch();
+  // const location = useLocation();
+  // const sideLayout = location.pathname.split("/")[1];
   // const projectid = props.match.params.projectid;
-  const { projectid } = useParams();
+  // const { projectid } = useParams();
   // fetching user dashboard and layout
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  let role;
-  if (userInfo) {
-    role = userInfo.Role;
-  }
-  const routes = Routes.filter(({ user, layout }) => user === role && layout === sideLayout);
+  // const userSignin = useSelector((state) => state.userSignin);
+  // const { userInfo } = userSignin;
 
-  console.log("params" + projectid);
-  useEffect(() => {
-    if (projectid) {
-      dispatch(projectbuilder(projectid));
-    }
-  }, [dispatch, projectid]);
+  // let role;
+  // if (userInfo) {
+  //   role = userInfo.Role;
+  // }
+  const role = "teacher";
+  const sideLayout = "dashboard";
 
-  // console.log(projectid);
+  const routes = Routes.filter(
+    ({ user, layout }) => user === role && layout === sideLayout
+  );
+
+  // console.log("params" + projectid);
+  // useEffect(() => {
+  //   if (projectid) {
+  //     dispatch(projectbuilder(projectid));
+  //   }
+  // }, [dispatch, projectid]);
+
   //first tab value from routes
+
   let firstTab = 999;
   if (routes) {
     for (let i = 0; i < routes.length; i++) {
@@ -79,12 +90,13 @@ export default function DashBoard(props) {
 
   // console.log(routes.find(({ id }) => id === activeTab));
   // Return to dashboad if user not logged in
-  if (!userInfo) {
-    return <Redirect to="/" />;
-  }
+  // if (!userInfo) {
+  //   return <Redirect to="/" />;
+  // }
 
   const handleTabClick = (tab_id) => {
     setActiveTab(tab_id);
+    console.log("active tab " + tab_id);
   };
 
   return (
@@ -92,10 +104,16 @@ export default function DashBoard(props) {
       <DashboardTop />
       <div className={classes.fakeToolbar}></div>
       <div className="row-start">
-        <DashboardSide tabClick={handleTabClick} routes={routes} firstTab={firstTab} />
+        <DashboardSide
+          tabClick={handleTabClick}
+          routes={routes}
+          activeTab={activeTab}
+        />
         <div className={classes.contentWrapper}>
           <div className={classes.content}>
-            {routes ? routes.find(({ id }) => id === activeTab).component : null}
+            {routes
+              ? routes.find(({ id }) => id === activeTab).component
+              : null}
           </div>
         </div>
       </div>

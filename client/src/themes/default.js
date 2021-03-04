@@ -25,10 +25,10 @@ export const theme = {
       main: info,
     },
     text: {
-      primary: "#707070",
+      primary: "#000000",
     },
     background: {
-      main: "#B2E4FA",
+      main: "#FFFFF",
       light: "#D8F1FC",
       dark: primary,
       checkbox: "#3B99FC",
@@ -37,9 +37,12 @@ export const theme = {
     contrastText: "#fff",
   },
   customShadows: {
-    widget: "0px 3px 11px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
-    widgetDark: "0px 3px 18px 0px #4558A3B3, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
-    widgetWide: "0px 12px 33px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
+    widget:
+      "0px 3px 11px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
+    widgetDark:
+      "0px 3px 18px 0px #4558A3B3, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
+    widgetWide:
+      "0px 12px 33px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
   },
   overrides: {
     "MuiListItem-button": {
@@ -79,7 +82,8 @@ export const theme = {
     },
     MuiMenu: {
       paper: {
-        boxShadow: "0px 3px 11px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
+        boxShadow:
+          "0px 3px 11px 0px #E8EAFC, 0 3px 3px -2px #B2B2B21A, 0 1px 8px 0 #9A9A9A1A",
       },
     },
     MuiSelect: {
