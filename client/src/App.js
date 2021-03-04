@@ -3,7 +3,7 @@ import Main from "layouts/Main";
 import Student from "mission6/Student";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Profile from "screens/Profile";
+import Profile from "mission6/Profile";
 
 export default function App() {
   return (
