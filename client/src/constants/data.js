@@ -74,17 +74,17 @@ export const StudentsData = {
   advanced: [
     {
       name: "Anouk Deep",
-      level: 5,
+      level: 25,
       image: Student1,
     },
     {
       name: "Bohai Chen",
-      level: 7,
+      level: 37,
       image: Student2,
     },
     {
       name: "Huiliang Li",
-      level: 17,
+      level: 27,
       image: Student3,
     },
   ],
@@ -96,7 +96,7 @@ export const StudentsData = {
     },
     {
       name: "Jun Liu",
-      level: 10,
+      level: 15,
       image: Student8,
     },
     {
@@ -105,9 +105,9 @@ export const StudentsData = {
       image: Student9,
     },
     {
-      name: "Genji Chen",
+      name: "Jason Gibb",
       level: 10,
-      image: Student6,
+      image: "",
     },
   ],
   beginner: [
@@ -117,23 +117,23 @@ export const StudentsData = {
       image: "",
     },
     {
-      name: "Lan Zhang",
-      level: 10,
-      image: Student7,
+      name: "Anouk Deep",
+      level: 5,
+      image: Student1,
     },
     {
-      name: "Jun Liu",
-      level: 10,
-      image: Student8,
+      name: "Bao Liu",
+      level: 5,
+      image: Student4,
     },
     {
-      name: "Mira Kumar",
+      name: "Alex Koo",
       level: 10,
       image: Student9,
     },
     {
       name: "Genji Chen",
-      level: 10,
+      level: 1,
       image: Student6,
     },
   ],
