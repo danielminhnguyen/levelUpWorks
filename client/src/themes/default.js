@@ -1,5 +1,5 @@
-const primary = "#43C0F6";
-const secondary = "#F91C85";
+const primary = "#F9B953";
+const secondary = "#F9B953";
 const warning = "#FFC260";
 const success = "#3CD4A0";
 const info = "#9013FE";
