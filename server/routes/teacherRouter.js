@@ -12,7 +12,7 @@ teacherRouter.post(
     const { teacherID } = req.body;
     // console.log("profile", teacherID);
     db.query(
-      "SELECT `UserID`, `FirstName`, `LastName`, `ProfilePic`, `MimeType` FROM `User` WHERE `Role` = 'student' AND `TeacherID` = ?",
+      "SELECT * FROM `user` WHERE `role` = 'student' AND `TeacherID` = ?",
       [teacherID],
       async (err, rows, fields) => {
         const data = [];
@@ -21,13 +21,26 @@ teacherRouter.post(
         } else {
           const encoding = "base64";
           rows.forEach((row) => {
-            // console.log(row);
-            const uri = `data:${row.MimeType};${encoding},${row.ProfilePic}`;
+            let uri;
+            if (row.profilePic === null) {
+              uri = "";
+            } else {
+              uri = `data:${row.profilePicMime};${encoding},${row.profilePic}`;
+            }
             data.push({
-              UserID: row.UserID,
-              FirstName: row.FirstName,
-              LastName: row.LastName,
+              UserID: row.userID,
+              FirstName: row.firstName,
+              LastName: row.lastName,
+              Level: row.level,
               ProfilePic: uri,
+              DOB: row.dob,
+              Allergy: row.allergy,
+              BloodType: row.bloodType,
+              School: row.school,
+              ParentName: row.parentName,
+              ParentEmail: row.parentEmail,
+              ParentPhone: row.parentPhone,
+              Class: row.class,
             });
           });
           res.status(200).send(data);
@@ -38,12 +51,12 @@ teacherRouter.post(
 );
 
 teacherRouter.post(
-  "/helprequest",
+  "/profilerequest",
   expressAsyncHandler(async (req, res) => {
     const { teacherID } = req.body;
     console.log("profile", teacherID);
     db.query(
-      "SELECT `User`.`UserID`, `User`.`FirstName`, `User`.`LastName`, `User`.`ProfilePic`, `User`.`TeacherID`, `User`.`Role`, `User`.`Gender`, `HelpRequest`.`Done`, `HelpRequest`.`DateCreated` FROM `missionx`.`User` , `missionx`.`HelpRequest` WHERE `User`.`UserId` = `HelpRequest`.`UserId` AND `User`.`TeacherID` = ? AND `HelpRequest`.`Done`= 1;",
+      "SELECT `UserID`, `firstName`, `lastName`, `profilePic`, `profilePicMime`, `TeacherID`, `role`, `dob`, `bloodType`, `allergy` FROM `user`",
       [teacherID],
       async (err, rows, fields) => {
         if (err) {
@@ -144,7 +157,9 @@ teacherRouter.post(
       -2
     )}-${`00${date.getUTCDate()}`.slice(-2)} ${`00${date.getUTCHours()}`.slice(
       -2
-    )}:${`00${date.getUTCMinutes()}`.slice(-2)}:${`00${date.getUTCSeconds()}`.slice(-2)}`;
+    )}:${`00${date.getUTCMinutes()}`.slice(
+      -2
+    )}:${`00${date.getUTCSeconds()}`.slice(-2)}`;
     db.query(
       "UPDATE `missionx`.`ProgressHistory` SET `DateCompleted` = ? , `ShowRequest` = 0 WHERE `ID` IN (?);",
       [date, students],

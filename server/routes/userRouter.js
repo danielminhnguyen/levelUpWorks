@@ -10,8 +10,6 @@ userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {
     const { email, password, role } = req.body;
-    const pw = await bcrypt.hashSync("abcd1234", 8);
-    console.log("example password: abcd1234 | " + pw);
     if (email && password) {
       db.query(
         "Select * FROM `user` WHERE `email` = ? AND `role` = ?",
@@ -26,7 +24,12 @@ userRouter.post(
           ) {
             // console.log(results[0]);
             const encoding = "base64";
-            const uri = `data:${results[0].MimeType};${encoding},${results[0].ProfilePic}`;
+            let uri;
+            if (results[0].profilePic === null) {
+              uri = "";
+            } else {
+              uri = `data:${results[0].profilePicMime};${encoding},${results[0].profilePic}`;
+            }
             res.status(200).send({
               UserID: results[0].UserID,
               TeacherID: results[0].TeacherID,
@@ -34,6 +37,8 @@ userRouter.post(
               LastName: results[0].lastName,
               Role: results[0].role,
               Email: results[0].email,
+              Phone: results[0].phone,
+              ProfilePic: uri,
             });
           } else {
             res.status(401).send({ message: "invalid email or password" });

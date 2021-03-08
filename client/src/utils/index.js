@@ -17,21 +17,28 @@ export function blob2Image(blob) {
 export function dateFormat(timestamp) {
   const date = new Date(timestamp);
   const stringDate = date.toString();
-  return `${stringDate.substring(0, 3)} ${date.getDate()} ${stringDate.substring(
-    4,
-    7
-  )} ${date.getFullYear()}`;
+  return `${stringDate.substring(
+    0,
+    3
+  )} ${date.getDate()} ${stringDate.substring(4, 7)} ${date.getFullYear()}`;
 }
 
 export function timeFormat(timestamp) {
   const date = new Date(timestamp);
-  return date.toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
+  return date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 }
 
 export function birthDayFormat(timestamp) {
   const date = new Date(timestamp);
   const stringDate = date.toString();
-  return `${date.getDate()} ${stringDate.substring(4, 7)} ${date.getFullYear()}`;
+  return `${date.getDate()} ${stringDate.substring(
+    4,
+    7
+  )} ${date.getFullYear()}`;
 }
 
 export function convertStringtoArray(str) {
@@ -43,4 +50,11 @@ export function convertStringtoArray(str) {
 export function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
+}
+
+export function calculateAge(birthday) {
+  const birthdayFormat = new Date(birthday);
+  var ageDifMs = Date.now() - birthdayFormat.getTime();
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
 }

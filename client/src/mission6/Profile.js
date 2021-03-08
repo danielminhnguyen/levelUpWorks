@@ -5,11 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import littleRocket from "../assets/images/littleRocket.png";
 import skillzBadges from "../assets/images/skillzbadges.png";
 
+import BlankProfile from "assets/img/Students/blank-profile.png";
+import { calculateAge, birthDayFormat } from "utils";
+import { Typography } from "@material-ui/core";
+
 const lightGreyColor = "#F0F0F0";
 const orangeColor = "#F9B953";
 
 const useStyles = makeStyles({
   mainDiv: {
+    overflow: "hidden",
     display: "flex",
     flexDirection: "column",
     padding: "30px",
@@ -49,10 +54,9 @@ const useStyles = makeStyles({
   profileImage: {
     position: "relative",
     top: "20px",
-    minHeight: "100px",
-    minWidth: "100px",
-    backgroundColor: "black",
     borderRadius: "50%",
+    width: 100,
+    height: 100,
   },
   topDivQuarter: {
     display: "flex",
@@ -107,7 +111,7 @@ const useStyles = makeStyles({
     fontWeight: 600,
   },
   superPowerDiv: {
-    width: "15vw",
+    width: "14vw",
     fontSize: "1.8em",
   },
   superPowers: {
@@ -171,7 +175,7 @@ const useStyles = makeStyles({
     },
   },
   botDivRightDiv: {
-    width: "20vw",
+    width: "18vw",
     "& div": {
       width: "200px",
       textAlign: "left",
@@ -181,20 +185,32 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Profile() {
+export default function Profile(props) {
   const classes = useStyles();
+  const { studentInfo, teacherInfo } = props;
+
+  const age = calculateAge(studentInfo.DOB);
+  const dateOfBirth = birthDayFormat(studentInfo.DOB);
 
   return (
     <div className={classes.mainDiv}>
       <div className={classes.topDiv}>
         <div className={classes.topDivQuarter}>
-          <div className={classes.profileImage} />
+          <img
+            className={classes.profileImage}
+            src={
+              studentInfo.ProfilePic === ""
+                ? BlankProfile
+                : studentInfo.ProfilePic
+            }
+            alt=""
+          />
           <div className={classes.basicInfo}>
             <div style={{ fontWeight: 300, marginBottom: "20px" }}>
-              Bohai Chen
+              {studentInfo.FirstName} {studentInfo.LastName}
             </div>
-            <div>L 05</div>
-            <div>7 years</div>
+            <div>L {studentInfo.Level}</div>
+            <div>{age} years</div>
           </div>
         </div>
         <div className={classes.topDivQuarter}>
@@ -213,7 +229,7 @@ export default function Profile() {
         </div>
         <div className={classes.topDivQuarter}>
           <img style={{ transform: "scale(0.7)" }} src={littleRocket} alt="" />
-          <div className={classes.littleRocketText}>L 06</div>
+          <div className={classes.littleRocketText}>L {studentInfo.Level}</div>
         </div>
         <div className={classes.topDivQuarter}>
           <div className={classes.superPowerDiv}>
@@ -247,50 +263,52 @@ export default function Profile() {
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>DOB</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{dateOfBirth}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>SCHOOL</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{studentInfo.School}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}></Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>PARENT</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{studentInfo.ParentName}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>EMAIL</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{studentInfo.ParentEmail}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>PHONE</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{studentInfo.ParentPhone}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>TEACHER</h4>
-                <input type="text"></input>
+                <Typography variant="h4">
+                  {teacherInfo.FirstName} {teacherInfo.LastName}
+                </Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>EMAIL</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{teacherInfo.Email}</Typography>
               </div>
             </Grid>
             <Grid item xs={4}>
               <div className={classes.botDivFormObject}>
                 <h4>PHONE</h4>
-                <input type="text"></input>
+                <Typography variant="h4">{teacherInfo.Phone}</Typography>
               </div>
             </Grid>
           </Grid>
@@ -309,11 +327,13 @@ export default function Profile() {
               <h4 className={classes.h4}>MEDICAL</h4>
               <div className={classes.inline}>
                 <div>ALLERGIES</div>
-                <b>PEANUT</b>
+                <Typography variant="h4">
+                  {studentInfo.Allergy === null ? "None" : studentInfo.Allergy}
+                </Typography>
               </div>
               <div className={classes.inline}>
                 <div>BLOODGROUP</div>
-                <b>A+</b>
+                <Typography variant="h4">{studentInfo.BloodType}</Typography>
               </div>
             </div>
           </div>

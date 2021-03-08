@@ -11,6 +11,8 @@ import {
 // import { useSelector } from "react-redux";
 // import { Redirect, useLocation, useParams } from "react-router-dom";
 import { Routes } from "constants/Routes";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 // import { projectbuilder } from "actions/projectActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,14 +56,14 @@ export default function DashBoard(props) {
   // const projectid = props.match.params.projectid;
   // const { projectid } = useParams();
   // fetching user dashboard and layout
-  // const userSignin = useSelector((state) => state.userSignin);
-  // const { userInfo } = userSignin;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
-  // let role;
-  // if (userInfo) {
-  //   role = userInfo.Role;
-  // }
-  const role = "teacher";
+  let role;
+  if (userInfo) {
+    role = userInfo.Role;
+  }
+  // const role = "teacher";
   const sideLayout = "dashboard";
 
   const routes = Routes.filter(
@@ -90,9 +92,9 @@ export default function DashBoard(props) {
 
   // console.log(routes.find(({ id }) => id === activeTab));
   // Return to dashboad if user not logged in
-  // if (!userInfo) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!userInfo) {
+    return <Redirect to="/" />;
+  }
 
   const handleTabClick = (tab_id) => {
     setActiveTab(tab_id);
@@ -101,7 +103,7 @@ export default function DashBoard(props) {
 
   return (
     <div className={classes.dashboard}>
-      <DashboardTop />
+      <DashboardTop userInfo={userInfo} />
       <div className={classes.fakeToolbar}></div>
       <div className="row-start">
         <DashboardSide

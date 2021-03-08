@@ -1,5 +1,5 @@
-import { Card } from "@material-ui/core";
-import React from "react";
+import { Button, Card, Dialog, DialogActions } from "@material-ui/core";
+import React, { useState } from "react";
 
 import classNames from "classnames";
 
@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 import BlankProfile from "assets/img/Students/blank-profile.png";
+import Profile from "mission6/Profile";
 
 // import StudentProfile from "assets/img/student-profile.svg";
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
     overflow: "visible",
   },
   imageContainer: {
-    zIndex: 10000,
+    zIndex: 99,
     transform: "translateY(20%)",
     // overflow: "visible",
     borderRadius: "50%",
@@ -36,10 +37,27 @@ const useStyles = makeStyles({
 });
 export default function StudentCard(props) {
   const classes = useStyles();
-  const { name, level, image } = props;
+  const { name, level, image, studentInfo, teacherInfo } = props;
+
+  const [open, setOpen] = useState(false);
+  const handleCardClick = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classNames(classes.cardContainer, "column")}>
+      <Dialog open={open} maxWidth="xl">
+        <Profile studentInfo={studentInfo} teacherInfo={teacherInfo} />
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary" variant="contained">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <div className={classes.imageContainer}>
         <img
           className={classes.image}
@@ -47,7 +65,7 @@ export default function StudentCard(props) {
           alt=""
         />
       </div>
-      <Card classes={{ root: classes.root }}>
+      <Card classes={{ root: classes.root }} onClick={handleCardClick}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" align="center">

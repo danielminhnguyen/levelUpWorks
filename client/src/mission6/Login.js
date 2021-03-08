@@ -7,13 +7,11 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
-import AOS from "aos";
 import "aos/dist/aos";
-import { API_URL } from "../config/index";
 import { signin } from "actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Error from "components/Error";
+import { Redirect } from "react-router";
 
 const lightGreyColor = "#F0F0F0";
 const orangeColor = "#F9B953";
@@ -77,16 +75,19 @@ const useStyles = makeStyles({
 });
 
 export default function Login() {
+  const classes = useStyles();
+
   const [email, setEmail] = useState("alan@levelup.com");
   const [password, setPassword] = useState("abcd1234");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("teacher");
   const [errMessage, setErrMessage] = useState();
 
   const userSignin = useSelector((state) => state.userSignin);
-  const { error } = userSignin;
+  const { error, userInfo } = userSignin;
 
   const dispatch = useDispatch();
-  const handleSubmit = (role) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (email && password) {
       dispatch(signin(email.trim(), password.trim(), role));
     } else {
@@ -94,6 +95,11 @@ export default function Login() {
     }
   };
 
+  if (userInfo) {
+    return <Redirect to="/dashboard" />;
+  }
+
+  // const handleSubmit = () => {};
   // const handleSubmit = () => {
   //   axios
   //     .post(`${API_URL}/signin`, {
@@ -106,9 +112,8 @@ export default function Login() {
   //     });
   // };
 
-  AOS.init();
+  // AOS.init();
 
-  const classes = useStyles();
   return (
     <div>
       <div className={classes.welcome}>
@@ -137,7 +142,7 @@ export default function Login() {
         />
       </div>
       <div className={classes.mainDiv}>
-        <form onSubmit={() => handleSubmit()} className={classes.form}>
+        <form onSubmit={(e) => handleSubmit(e)} className={classes.form}>
           <div style={{ fontWeight: "400", fontSize: "1.5em", color: "grey" }}>
             Log in to start Leveling Up!
           </div>

@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {
   AppBar,
   Badge,
+  Box,
   Button,
   fade,
   IconButton,
@@ -19,6 +20,8 @@ import { ReactComponent as Profile } from "assets/img/profile.svg";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { ReactComponent as CalendarIcon } from "assets/img/calendar-icon.svg";
+import { useDispatch } from "react-redux";
+import { signout } from "actions/userActions";
 //components
 
 const useStyles = makeStyles((theme) => ({
@@ -90,6 +93,12 @@ export default function DashboardTop(props) {
   // const location = useLocation();
   // const sideLayout = location.pathname.split("/")[1];
   const classes = useStyles();
+  const { userInfo } = props;
+
+  const dispatch = useDispatch();
+  const handleSignOut = () => {
+    dispatch(signout());
+  };
 
   return (
     <AppBar
@@ -122,12 +131,14 @@ export default function DashboardTop(props) {
         <IconButton color="inherit">
           <CalendarIcon />
         </IconButton>
-        <Button variant="contained" color="secondary">
-          Login
-        </Button>
+        <Box mr={2}>
+          <Button onClick={handleSignOut} variant="contained" color="secondary">
+            Logout
+          </Button>
+        </Box>
         <Typography variant="h5">Howdy Alan</Typography>
         <div className={classes.profilePhoto}>
-          <Profile />
+          <img src={userInfo.ProfilePic} alt="" />
         </div>
       </div>
     </AppBar>
