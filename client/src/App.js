@@ -5,6 +5,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Profile from "mission6/Profile";
 // import Home from "layouts/Home";
+import Login from "./mission6/Login";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route exact path="/dashboard" component={DashBoard} />
         <Route exact path="/student" component={Student} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </div>
   );
