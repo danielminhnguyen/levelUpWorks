@@ -6,7 +6,7 @@ const config = {
   database: process.env.MYSQL_DATABASE || "missionx",
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  port: Number(process.env.MYSQL_PORT || 3306),
+  port: Number(process.env.MYSQL_PORT || 14330),
   // ssl: {
   //   ca: Buffer.from(process.env.MYSQL_CERT_BASE64, "base64").toString("ascii"),
   // },

@@ -17,19 +17,25 @@ export const signin = (email, password, role) => async (dispatch) => {
     payload: { email, password, role },
   });
   try {
-    const { data } = await Axios.post(API_URL + "api/users/signin", { email, password, role });
+    const { data } = await Axios.post(API_URL + "api/users/signin", {
+      email,
+      password,
+      role,
+    });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    if (role === "teacher") {
-      history.push("/dashboard");
-    } else {
-      history.push("/projects");
-    }
+    // if (role === "teacher") {
+    //   history.push("/dashboard");
+    // } else {
+    //   history.push("/projects");
+    // }
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_SIGNIN_FAIL,
       payload:
-        error.response && error.response.data.message ? error.response.data.message : error.message,
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
@@ -40,7 +46,9 @@ export const signout = () => async (dispatch) => {
   history.push("/");
 };
 
-export const register = (firstname, lastname, email, password, role) => async (dispatch) => {
+export const register = (firstname, lastname, email, password, role) => async (
+  dispatch
+) => {
   dispatch({
     type: USER_REGISTER_REQUEST,
     payload: { firstname, lastname, email, password, role },

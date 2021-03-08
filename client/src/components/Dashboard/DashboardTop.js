@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {
   AppBar,
   Badge,
+  Button,
   fade,
   IconButton,
   InputBase,
@@ -121,6 +122,9 @@ export default function DashboardTop(props) {
         <IconButton color="inherit">
           <CalendarIcon />
         </IconButton>
+        <Button variant="contained" color="secondary">
+          Login
+        </Button>
         <Typography variant="h5">Howdy Alan</Typography>
         <div className={classes.profilePhoto}>
           <Profile />

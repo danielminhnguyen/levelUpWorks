@@ -10,32 +10,30 @@ userRouter.post(
   "/signin",
   expressAsyncHandler(async (req, res) => {
     const { email, password, role } = req.body;
+    const pw = await bcrypt.hashSync("abcd1234", 8);
+    console.log("example password: abcd1234 | " + pw);
     if (email && password) {
       db.query(
-        // "Select * FROM `missionx`.`User` WHERE `Email` = ? AND `Role` = ?",
-        "SELECT a.*, b.`FirstName` `TeacherFirstName`,  b.`LastName` `TeacherLastName` FROM `missionx`.`User` a LEFT OUTER JOIN `missionx`.`User` b ON a.`TeacherID` = b.`UserID` WHERE a.`Email` = ? AND a.`Role` = ?;",
+        "Select * FROM `user` WHERE `email` = ? AND `role` = ?",
+        // "SELECT a.*, b.`FirstName` `TeacherFirstName`,  b.`LastName` `TeacherLastName` FROM `levelUpWorks`.`user` a LEFT OUTER JOIN `levelUpWorks`.`User` b ON a.`TeacherID` = b.`UserID` WHERE a.`email` = ? AND a.`role` = ?;",
         [email, role],
         async (err, results) => {
           if (err) {
             console.log(err);
-          } else if (results.length === 1 && bcrypt.compareSync(password, results[0].Password)) {
+          } else if (
+            results.length === 1 &&
+            bcrypt.compareSync(password, results[0].password)
+          ) {
             // console.log(results[0]);
             const encoding = "base64";
             const uri = `data:${results[0].MimeType};${encoding},${results[0].ProfilePic}`;
             res.status(200).send({
               UserID: results[0].UserID,
-              FirstName: results[0].FirstName,
-              LastName: results[0].LastName,
-              Role: results[0].Role,
-              ProfilePic: uri,
-              School: results[0].School,
-              DateOfBirth: results[0].DateOfBirth,
-              ContactNumber: results[0].ContactNumber,
-              Email: results[0].Email,
-              CoursePurchased: results[0].CoursePurchased,
-              token: generateToken(results[0]),
-              TeacherFirstName: results[0].TeacherFirstName,
-              TeacherLastName: results[0].TeacherLastName,
+              TeacherID: results[0].TeacherID,
+              FirstName: results[0].firstName,
+              LastName: results[0].lastName,
+              Role: results[0].role,
+              Email: results[0].email,
             });
           } else {
             res.status(401).send({ message: "invalid email or password" });

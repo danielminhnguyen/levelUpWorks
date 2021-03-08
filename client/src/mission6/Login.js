@@ -11,6 +11,9 @@ import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos";
 import { API_URL } from "../config/index";
+import { signin } from "actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import Error from "components/Error";
 
 const lightGreyColor = "#F0F0F0";
 const orangeColor = "#F9B953";
@@ -74,21 +77,34 @@ const useStyles = makeStyles({
 });
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("alan@levelup.com");
+  const [password, setPassword] = useState("abcd1234");
   const [role, setRole] = useState("");
+  const [errMessage, setErrMessage] = useState();
 
-  const handleSubmit = () => {
-    axios
-      .post(`${API_URL}/signin`, {
-        email: email,
-        password: password,
-        role: role,
-      })
-      .then((res) => {
-        console.log(res);
-      });
+  const userSignin = useSelector((state) => state.userSignin);
+  const { error } = userSignin;
+
+  const dispatch = useDispatch();
+  const handleSubmit = (role) => {
+    if (email && password) {
+      dispatch(signin(email.trim(), password.trim(), role));
+    } else {
+      alert("Password and username are not matched");
+    }
   };
+
+  // const handleSubmit = () => {
+  //   axios
+  //     .post(`${API_URL}/signin`, {
+  //       email: email,
+  //       password: password,
+  //       role: role,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
 
   AOS.init();
 
@@ -171,7 +187,9 @@ export default function Login() {
             Log In
           </Button>
         </form>
+        {/* {errMessage ? <Error message={errMessage} /> : null} */}
       </div>
+      {error ? <Error message={error} /> : null}
     </div>
   );
 }

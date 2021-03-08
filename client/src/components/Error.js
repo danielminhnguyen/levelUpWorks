@@ -27,11 +27,15 @@ export default function Error(props) {
         onClose={() => handleMessageClose()}
         message={message}
       >
-        <Alert elevation={6} onClose={() => handleMessageClose()} severity={type}>
+        <Alert
+          elevation={6}
+          onClose={() => handleMessageClose()}
+          severity={type}
+        >
           {message}
         </Alert>
       </Snackbar>
-      <Typography variant="h1">PAGE NOT FOUND</Typography>
+      {/* <Typography variant="h1">PAGE NOT FOUND</Typography> */}
     </>
   );
 }

@@ -21,7 +21,7 @@ export const scaleGrid = {
   password: "8_pBDt3A7dVXNlkF",
   database: "levelUpWorks",
   port: 3306,
-  ssl: { ca: certificate },
+  // ssl: { ca: certificate },
 };
 
 const db = mysql.createConnection(scaleGrid);
