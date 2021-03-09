@@ -1,5 +1,6 @@
 import { Button, Card, Dialog, DialogActions } from "@material-ui/core";
 import React, { useState } from "react";
+import CloseIcon from "@material-ui/icons/Close";
 
 import classNames from "classnames";
 
@@ -11,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import BlankProfile from "assets/img/Students/blank-profile.png";
 import Profile from "mission6/Profile";
 
+const orange = "#F9B953";
 // import StudentProfile from "assets/img/student-profile.svg";
 
 const useStyles = makeStyles({
@@ -34,6 +36,27 @@ const useStyles = makeStyles({
     marginTop: 10,
     marginRight: 10,
   },
+  dialogClose: {
+    position: "fixed",
+    top: "30px",
+    right: "210px",
+    transition: "0.3s",
+    height: "50px",
+    width: "50px",
+    "& .cross": {
+      opacity: "0.5",
+      color: orange,
+      transition: "0.3s",
+      height: "50px",
+      width: "50px",
+    },
+    "& :hover": {
+      cursor: "pointer",
+      height: "60px",
+      width: "60px",
+      opacity: "1",
+    },
+  },
 });
 export default function StudentCard(props) {
   const classes = useStyles();
@@ -52,9 +75,9 @@ export default function StudentCard(props) {
       <Dialog open={open} maxWidth="xl">
         <Profile studentInfo={studentInfo} teacherInfo={teacherInfo} />
         <DialogActions>
-          <Button onClick={handleClose} color="secondary" variant="contained">
-            Close
-          </Button>
+          <div className={classes.dialogClose} onClick={handleClose}>
+            <CloseIcon className="cross" onClick={handleClose} />
+          </div>
         </DialogActions>
       </Dialog>
 
