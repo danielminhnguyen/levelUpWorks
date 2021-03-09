@@ -3,6 +3,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import ShareIcon from "@material-ui/icons/Share";
+import CheckIcon from "@material-ui/icons/Check";
 
 // image imports
 import littleRocket from "../assets/images/littleRocket.png";
@@ -54,12 +56,33 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     marginBottom: "2vh",
     height: "15vh",
+    "& .paidPending": {
+      position: "relative",
+      bottom: "50px",
+      height: "100px",
+      fontSize: "1.7em",
+      fontWeight: "300",
+      "& div": {
+        display: "flex",
+        alignItems: "center",
+        width: "100px",
+        "& CheckIcon": {
+          color: orange,
+        },
+      },
+    },
     "& .divHeading": {
       position: "absolute",
       top: "30px",
       left: "30px",
       textDecoration: "underline",
       fontSize: "1.8em",
+    },
+    "& .button": {
+      backgroundColor: darkGrey,
+      height: "50px",
+      width: "150px",
+      boxShadow: "1px 3px 4px rgb(0,0,0,0.2)",
     },
   },
   personal: {
@@ -75,6 +98,9 @@ const useStyles = makeStyles({
       left: "30px",
       textDecoration: "underline",
       fontSize: "1.8em",
+    },
+    "& .info": {
+      marginTop: "20px",
     },
     "& .secondaryHeading": {
       textDecoration: "underline",
@@ -104,6 +130,9 @@ const useStyles = makeStyles({
     borderRadius: "8px",
     border: "1px solid grey",
     color: "grey",
+    "& :focus": {
+      outline: "none",
+    },
   },
   profileObject: {
     display: "flex",
@@ -201,6 +230,23 @@ const useStyles = makeStyles({
       margin: "0px",
     },
   },
+  ShareIcon: {
+    height: "180px",
+    width: "400px",
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    "& .share": {
+      height: "100px",
+      width: "100px",
+    },
+  },
+  medical: {
+    marginTop: "50px",
+    "& .inline": {
+      marginTop: "25px",
+    },
+  },
 });
 
 export default function Profile(props) {
@@ -280,6 +326,9 @@ export default function Profile(props) {
           <h3>SKILL BADGES</h3>
           <img src={skillzBadges} alt="" />
         </div>
+        <div className={classes.ShareIcon}>
+          <ShareIcon className="share" />
+        </div>
       </div>
       <div className={classes.rightDiv}>
         <div className={classes.payments}>
@@ -290,13 +339,16 @@ export default function Profile(props) {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <div>
-                <div>PAID</div>
+              <div className="paidPending">
+                <div>
+                  <div>PAID</div>
+                  <CheckIcon />
+                </div>
                 <div>PENDING</div>
               </div>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Button>Send Reminder</Button>
+              <Button className="button">Send Reminder</Button>
             </Grid>
           </Grid>
         </div>
@@ -304,7 +356,7 @@ export default function Profile(props) {
           <Typography variant="h3" className="divHeading">
             PERSONAL
           </Typography>
-          <div>
+          <div className="info">
             <Grid container spacing={4}>
               <Grid item xs={4}>
                 <div className={classes.formObject}>

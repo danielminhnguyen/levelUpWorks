@@ -1,6 +1,7 @@
 import { Button, Card, Dialog, DialogActions } from "@material-ui/core";
 import React, { useState } from "react";
 import CloseIcon from "@material-ui/icons/Close";
+import SaveAltIcon from "@material-ui/icons/SaveAlt";
 
 import classNames from "classnames";
 
@@ -38,12 +39,19 @@ const useStyles = makeStyles({
   },
   dialogClose: {
     position: "fixed",
-    top: "30px",
-    right: "210px",
+    top: "18px",
+    right: "200px",
     transition: "0.3s",
     height: "50px",
     width: "50px",
     "& .cross": {
+      opacity: "0.5",
+      color: orange,
+      transition: "0.3s",
+      height: "50px",
+      width: "50px",
+    },
+    "& .export": {
       opacity: "0.5",
       color: orange,
       transition: "0.3s",
@@ -77,6 +85,7 @@ export default function StudentCard(props) {
         <DialogActions>
           <div className={classes.dialogClose} onClick={handleClose}>
             <CloseIcon className="cross" onClick={handleClose} />
+            <SaveAltIcon className="export" />
           </div>
         </DialogActions>
       </Dialog>
