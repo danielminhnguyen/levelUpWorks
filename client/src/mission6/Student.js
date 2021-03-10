@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import { teacherProfileReq } from "actions/teacherActions";
 import classNames from "classnames";
+import Error from "components/Error";
 import StudentCard from "components/StudentCard";
 import { ProjectData, StudentsData } from "constants/data";
 import React, { useEffect } from "react";
@@ -44,6 +45,7 @@ export default function Student() {
 
   return (
     <div>
+      {error ? <Error message={error} /> : null}
       {loading ? (
         <LinearProgress />
       ) : (

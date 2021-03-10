@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   logo: {
+    height: 100,
     marginLeft: theme.spacing(5),
   },
   navigation: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   iconContainer: {
     width: 100,
     height: 100,
-    backgroundColor: "#C4C4C4",
+    // backgroundColor: "#C4C4C4",
     borderRadius: "50%",
     marginBottom: theme.spacing(1),
     marginTop: theme.spacing(1),

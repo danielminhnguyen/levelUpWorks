@@ -2,10 +2,10 @@ import fs from "fs";
 import mysql from "mysql2";
 
 export const local = {
-  host: process.env.MYSQL_HOST_IP || "localhost",
+  host: process.env.MYSQL_HOST_IP,
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE || "levelUpWorks",
+  database: process.env.MYSQL_DATABASE,
 };
 
 let certificate;
