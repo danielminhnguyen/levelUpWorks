@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
   },
   contentWrapper: {
+    marginTop: 90,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",

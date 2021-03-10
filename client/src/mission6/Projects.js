@@ -12,9 +12,10 @@ import { ReactComponent as BackDrop } from "assets/img/backdrop.svg";
 import classNames from "classnames";
 import StudentCard from "components/StudentCard";
 
-import { ProjectData } from "constants/data";
+// import { ProjectData } from "constants/data";
 import { useDispatch, useSelector } from "react-redux";
 import { teacherProfileReq } from "actions/teacherActions";
+import Error from "components/Error";
 
 const useStyles = makeStyles((theme) => ({
   backDrop: {
@@ -52,7 +53,9 @@ export default function Projects() {
 
   return (
     <>
-      {loading ? (
+      {error ? (
+        <Error message={error} />
+      ) : loading ? (
         <LinearProgress />
       ) : (
         <Grid container>
