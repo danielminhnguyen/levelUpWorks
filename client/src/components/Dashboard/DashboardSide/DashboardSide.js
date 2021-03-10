@@ -4,7 +4,8 @@ import React from "react";
 import classNames from "classnames";
 
 // graphics
-import { ReactComponent as Logo } from "assets/img/logo.svg";
+// import { ReactComponent as Logo } from "assets/img/logo.svg";
+import Logo from "assets/img/Logo.js";
 
 // material ui
 import {
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginLeft: theme.spacing(5),
+    width: "400px",
   },
   navigation: {
     marginTop: theme.spacing(15),
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     border: "none",
     backgroundColor: "transparent",
+    overflow: "hidden",
   },
   iconContainer: {
     width: 100,
