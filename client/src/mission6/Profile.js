@@ -284,9 +284,7 @@ export default function Profile(props) {
             <div className={classes.progressTrack}>
               <div>
                 <div style={{ fontWeight: "300" }}>LAST WEEK</div>
-                <div>
-                  P {studentInfo.Level - 3} - P {studentInfo.Level - 1}
-                </div>
+                <div>P {studentInfo.lastWeek}</div>
               </div>
               <div>
                 <div style={{ fontWeight: "300" }}>THIS WEEK</div>
