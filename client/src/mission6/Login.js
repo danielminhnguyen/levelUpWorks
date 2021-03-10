@@ -175,12 +175,8 @@ export default function Login() {
             Log In
           </Button>
         </form>
-<<<<<<< HEAD
-      </div>
-=======
         {/* {errMessage ? <Error message={errMessage} /> : null} */}
       </animated.div>
->>>>>>> 396c18801acf023556245a2b5282cca418d3db4c
       {error ? <Error message={error} /> : null}
     </div>
   );

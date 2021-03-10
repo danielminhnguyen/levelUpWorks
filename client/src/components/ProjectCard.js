@@ -128,11 +128,15 @@ export default function ProjectCard(props) {
             value={50}
           />
         </div>
-        <PanToolIcon
-          className={classes.helpRequest}
-          fontSize="large"
-          color="primary"
-        />
+        {Math.random() < 0.5 ? (
+          <PanToolIcon
+            className={classes.helpRequest}
+            fontSize="large"
+            color="primary"
+          />
+        ) : (
+          <></>
+        )}
       </Paper>
       <Dialog open={open} maxWidth="xl">
         <Profile studentInfo={studentInfo} teacherInfo={teacherInfo} />
