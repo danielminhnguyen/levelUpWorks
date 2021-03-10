@@ -7,11 +7,12 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import "aos/dist/aos";
 import { signin } from "actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import Error from "components/Error";
 import { Redirect } from "react-router";
+import "./Login.css";
+import { useSpring, animated } from "react-spring";
 
 const lightGreyColor = "#F0F0F0";
 const orangeColor = "#F9B953";
@@ -28,13 +29,6 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  },
-  welcome: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "20px",
-    marginTop: "50px",
   },
   form: {
     display: "flex",
@@ -66,12 +60,6 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  logoText: {
-    position: "relative",
-    left: "240px",
-    fontSize: "3em",
-    color: "grey",
-  },
 });
 
 export default function Login() {
@@ -84,6 +72,33 @@ export default function Login() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { error, userInfo } = userSignin;
+
+  // React Springs
+  const levelOneFade = useSpring({
+    config: { mass: 1, tension: 170, friction: 30 },
+    from: { opacity: 1, right: "230px" },
+    to: { opacity: 1, right: "0" },
+  });
+  const levelTwoFade = useSpring({
+    config: { mass: 2, tension: 180, friction: 37 },
+    from: { opacity: 0.0, top: "100px" },
+    to: { opacity: 0.6, top: "0px" },
+  });
+  const levelThreeFade = useSpring({
+    config: { mass: 3, tension: 300, friction: 45 },
+    from: { opacity: 0.0, top: "200px" },
+    to: { opacity: 0.3, top: "0px" },
+  });
+  const orangeBoxFade = useSpring({
+    config: { mass: 2, tension: 270, friction: 30 },
+    from: { opacity: 0, right: "0px" },
+    to: { opacity: 1, right: "230px" },
+  });
+  const fadeIn = useSpring({
+    config: { clamp: true, mass: 10, tension: 270, friction: 50 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
@@ -98,50 +113,19 @@ export default function Login() {
   if (userInfo) {
     return <Redirect to="/dashboard" />;
   }
-
-  // const handleSubmit = () => {};
-  // const handleSubmit = () => {
-  //   axios
-  //     .post(`${API_URL}/signin`, {
-  //       email: email,
-  //       password: password,
-  //       role: role,
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
-
-  // AOS.init();
-
   return (
     <div>
-      <div className={classes.welcome}>
-        <div className={classes.logoText}>
-          <div data-aos="fade-right" style={{ opacity: 0.3 }}>
-            LEVEL UP
-          </div>
-          <div data-aos="fade-right" style={{ opacity: 0.6 }}>
-            LEVEL UP
-          </div>
-          <div data-aos="fade-right">
+      <div className="welcome">
+        <div className="logoText">
+          <animated.div style={levelThreeFade}>LEVEL UP</animated.div>
+          <animated.div style={levelTwoFade}>LEVEL UP</animated.div>
+          <animated.div style={levelOneFade}>
             LEVEL UP <b style={{ color: "black" }}>WORKS</b>
-          </div>
+          </animated.div>
         </div>
-        <div
-          data-aos="fade-left"
-          style={{
-            borderRadius: "8px",
-            height: "300px",
-            width: "300px",
-            backgroundColor: orangeColor,
-            position: "relative",
-            right: "230px",
-            zIndex: "-1",
-          }}
-        />
+        <animated.div style={orangeBoxFade} className="orangeBox" />
       </div>
-      <div className={classes.mainDiv}>
+      <animated.div style={fadeIn} className={classes.mainDiv}>
         <form onSubmit={(e) => handleSubmit(e)} className={classes.form}>
           <div style={{ fontWeight: "400", fontSize: "1.5em", color: "grey" }}>
             Log in to start Leveling Up!
@@ -193,7 +177,7 @@ export default function Login() {
           </Button>
         </form>
         {/* {errMessage ? <Error message={errMessage} /> : null} */}
-      </div>
+      </animated.div>
       {error ? <Error message={error} /> : null}
     </div>
   );
