@@ -12,11 +12,13 @@ import {
   IconButton,
   InputBase,
   makeStyles,
+  Menu,
+  MenuItem,
   Typography,
 } from "@material-ui/core";
 
 // graphics
-import { ReactComponent as Profile } from "assets/img/profile.svg";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import SearchIcon from "@material-ui/icons/Search";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import { ReactComponent as CalendarIcon } from "assets/img/calendar-icon.svg";
@@ -83,6 +85,13 @@ const useStyles = makeStyles((theme) => ({
   profilePhoto: {
     marginLeft: theme.spacing(5),
   },
+  expanded: {
+    position: "absolute",
+    transform: "translateY(80%)",
+  },
+  dropDownMenu: {
+    transform: "translateY(60px)",
+  },
 }));
 
 DashboardTop.propTypes = {
@@ -99,6 +108,40 @@ export default function DashboardTop(props) {
   const handleSignOut = () => {
     dispatch(signout());
   };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const renderMenu = (
+    <Menu
+      className={classes.dropDownMenu}
+      id="menu-appbar"
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "center",
+      }}
+      open={open}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>Settings</MenuItem>
+      <MenuItem onClick={handleClose}>Plugins</MenuItem>
+      <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+    </Menu>
+  );
 
   return (
     <AppBar
@@ -131,16 +174,20 @@ export default function DashboardTop(props) {
         <IconButton color="inherit">
           <CalendarIcon />
         </IconButton>
-        <Box mr={2}>
-          <Button onClick={handleSignOut} variant="contained" color="secondary">
-            Logout
-          </Button>
-        </Box>
-        <Typography variant="h5">Howdy Alan</Typography>
+
+        <IconButton className="column" onClick={handleMenu}>
+          <Typography variant="h5" color="text.primary">
+            Howdy {userInfo.FirstName}
+          </Typography>
+          <div className={classes.expanded}>
+            <ExpandMoreIcon />
+          </div>
+        </IconButton>
         <div className={classes.profilePhoto}>
           <img src={userInfo.ProfilePic} alt="" />
         </div>
       </div>
+      {renderMenu}
     </AppBar>
   );
 }

@@ -49,9 +49,9 @@ export default function Home() {
   const classes = useStyles();
   const [modalOpen, setmodalOpen] = useState(false);
 
-  const openModal = (event) => {
-    setmodalOpen(true);
-  };
+  // const openModal = (event) => {
+  //   setmodalOpen(true);
+  // };
 
   const ModalClose = () => {
     setmodalOpen(false);

@@ -7,6 +7,7 @@ import { ReactComponent as AnalyticIcon } from "assets/img/analytics-icon.svg";
 import Projects from "mission6/Projects";
 import Student from "mission6/Student";
 import Analytics from "mission6/Analytics";
+import ClassMenu from "mission6/ClassMenu";
 
 //teacher dashboard component
 
@@ -18,7 +19,7 @@ export const Routes = [
     layout: "dashboard",
     icon: <ProjectIcon />,
     label: "projects",
-    component: "",
+    component: <Projects />,
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ export const Routes = [
     layout: "dashboard",
     icon: <ClassesIcon />,
     label: "classes",
-    component: <Projects />,
+    component: <ClassMenu />,
   },
   {
     id: 3,

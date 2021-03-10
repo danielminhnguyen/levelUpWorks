@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Slide, Snackbar, Typography } from "@material-ui/core";
+import { Slide, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 export default function Error(props) {

@@ -80,7 +80,6 @@ export default function Login() {
   const [email, setEmail] = useState("alan@levelup.com");
   const [password, setPassword] = useState("abcd1234");
   const [role, setRole] = useState("teacher");
-  const [errMessage, setErrMessage] = useState();
 
   const userSignin = useSelector((state) => state.userSignin);
   const { error, userInfo } = userSignin;
@@ -192,7 +191,6 @@ export default function Login() {
             Log In
           </Button>
         </form>
-        {/* {errMessage ? <Error message={errMessage} /> : null} */}
       </div>
       {error ? <Error message={error} /> : null}
     </div>

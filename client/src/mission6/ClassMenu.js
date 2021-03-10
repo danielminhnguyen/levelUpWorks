@@ -11,12 +11,11 @@ import React, { useEffect } from "react";
 import { ReactComponent as BackDrop } from "assets/img/backdrop.svg";
 import classNames from "classnames";
 import StudentCard from "components/StudentCard";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
+
 // import { ProjectData } from "constants/data";
 import { useDispatch, useSelector } from "react-redux";
 import { teacherProfileReq } from "actions/teacherActions";
 import Error from "components/Error";
-import ProjectCard from "components/ProjectCard";
 
 const useStyles = makeStyles((theme) => ({
   backDrop: {
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Projects() {
+export default function ClassMenu() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const userSignin = useSelector((state) => state.userSignin);
@@ -60,33 +59,18 @@ export default function Projects() {
         <LinearProgress />
       ) : (
         <Grid container>
-          <Grid item xs={6} className={classNames(classes.welcome, "column")}>
-            <div className={classes.backDrop}>
-              <BackDrop />
-            </div>
-            <div>
-              <Typography variant="h2" align="left">
-                Welcome Back Alan!
-              </Typography>
-              <Typography variant="h5" align="left" className="row">
-                <MailOutlineIcon /> 5 new nofitications
-              </Typography>
-            </div>
-          </Grid>
-          <Grid item xs={6} className="flex-column-end"></Grid>
-
-          <Grid item xs={4} className={classNames(classes.location)}>
+          <Grid item xs={6} className={classNames(classes.location)}>
             <Typography variant="h4" className={classes.locationTitle}>
-              Beginner
+              Botany Downs Library
             </Typography>
 
             <Grid container>
               {studentsInfo ? (
                 studentsInfo
-                  .filter((student) => student.Level <= 10)
+                  .filter((student) => student.Class === "botany")
                   .map((student) => (
-                    <Grid item xs={12}>
-                      <ProjectCard
+                    <Grid item xs={4}>
+                      <StudentCard
                         studentInfo={student}
                         teacherInfo={userInfo}
                         name={`${student.FirstName} ${student.LastName}`}
@@ -100,43 +84,17 @@ export default function Projects() {
               )}
             </Grid>
           </Grid>
-          <Grid item xs={4} className={classNames(classes.location)}>
+          <Grid item xs={6} className={classNames("column", classes.location)}>
             <Typography variant="h4" className={classes.locationTitle}>
-              Intermediate
+              Epsom Girls Grammar School
             </Typography>
             <Grid container>
               {studentsInfo ? (
                 studentsInfo
-                  .filter(
-                    (student) => student.Level > 10 && student.Level <= 20
-                  )
+                  .filter((student) => student.Class === "epsom")
                   .map((student) => (
-                    <Grid item xs={12}>
-                      <ProjectCard
-                        studentInfo={student}
-                        teacherInfo={userInfo}
-                        name={`${student.FirstName} ${student.LastName}`}
-                        level={student.Level}
-                        image={student.ProfilePic}
-                      />
-                    </Grid>
-                  ))
-              ) : (
-                <div></div>
-              )}
-            </Grid>
-          </Grid>
-          <Grid item xs={4} className={classNames(classes.location)}>
-            <Typography variant="h4" className={classes.locationTitle}>
-              Intermediate
-            </Typography>
-            <Grid container>
-              {studentsInfo ? (
-                studentsInfo
-                  .filter((student) => student.Level > 20)
-                  .map((student) => (
-                    <Grid item xs={12}>
-                      <ProjectCard
+                    <Grid item xs={4}>
+                      <StudentCard
                         studentInfo={student}
                         teacherInfo={userInfo}
                         name={`${student.FirstName} ${student.LastName}`}
