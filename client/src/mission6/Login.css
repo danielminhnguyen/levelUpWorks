@@ -1,0 +1,28 @@
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  margin-top: 50px;
+}
+
+.logoText {
+  position: relative;
+  left: 220px;
+  font-size: 3em;
+  color: grey;
+}
+
+.logoText div {
+  position: relative;
+}
+
+.orangeBox {
+  border-radius: 8px;
+  height: 300px;
+  width: 300px;
+  background-color: #f9b953;
+  position: relative;
+  right: 230px;
+  z-index: -1;
+}
