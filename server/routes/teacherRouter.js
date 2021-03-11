@@ -32,6 +32,7 @@ teacherRouter.post(
               FirstName: row.firstName,
               LastName: row.lastName,
               Level: row.level,
+              lastWeek: row.lastWeek,
               ProfilePic: uri,
               DOB: row.dob,
               Allergy: row.allergy,
