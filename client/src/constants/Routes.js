@@ -8,6 +8,7 @@ import Projects from "mission6/Projects";
 import Student from "mission6/Student";
 import Analytics from "mission6/Analytics";
 import ClassMenu from "mission6/ClassMenu";
+import Message from "mission6/Message";
 
 //teacher dashboard component
 
@@ -44,7 +45,7 @@ export const Routes = [
     layout: "dashboard",
     icon: <InboxIcon />,
     label: "inbox",
-    component: "",
+    component: <Message />,
   },
   {
     id: 5,

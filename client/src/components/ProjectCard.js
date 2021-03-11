@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
-
+import { timeFormat, dateFormat } from "utils";
 import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   progress: {
-    width: 170,
+    width: 150,
     height: 40,
   },
   helpRequest: {
@@ -106,6 +106,8 @@ export default function ProjectCard(props) {
     setOpen(false);
   };
 
+  const date = new Date();
+
   return (
     <>
       <Paper
@@ -121,7 +123,9 @@ export default function ProjectCard(props) {
         />
         <div className={classNames(classes.growth, "row")}>
           <div>
-            <Typography>Date | TIME</Typography>
+            <Typography>
+              {dateFormat(date)} | {timeFormat(date)}
+            </Typography>
             <Typography variant="h4">{name}</Typography>
           </div>
           <Typography variant="h2">P {getRandomInt(1, 30)}</Typography>

@@ -17,10 +17,7 @@ export function blob2Image(blob) {
 export function dateFormat(timestamp) {
   const date = new Date(timestamp);
   const stringDate = date.toString();
-  return `${stringDate.substring(
-    0,
-    3
-  )} ${date.getDate()} ${stringDate.substring(4, 7)} ${date.getFullYear()}`;
+  return `${date.getDate()} ${stringDate.substring(4, 7)} `;
 }
 
 export function timeFormat(timestamp) {
