@@ -2,6 +2,7 @@ import React from "react";
 
 // components
 import classNames from "classnames";
+import { motion } from "framer-motion";
 
 // graphics
 // import { ReactComponent as Logo } from "assets/img/logo.svg";
@@ -77,6 +78,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  // hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    x: 10,
+  },
+};
+
 export default function DashboardSide(props) {
   const classes = useStyles();
   // const userSignin = useSelector((state) => state.userSignin);
@@ -99,35 +120,53 @@ export default function DashboardSide(props) {
           <Logo />
         </div>
         <div className={classes.navigation}>
-          <List>
-            {routes.map((item) => (
-              <div className={classes.navItem}>
-                <div
-                  key={item.id}
-                  // autoFocus={item.id === firstTab ? true : false}
-                  className={classNames(
-                    classes.iconContainer,
-                    "column",
-                    activeTab === item.id ? classes.active : classes.nonActive
-                  )}
-                  onClick={() => tabClick(item.id)}
+          <motion.ul
+            className="container"
+            variants={container}
+            // initial="hidden"
+            animate="visible"
+          >
+            <List>
+              {routes.map((item) => (
+                <motion.li
+                  key={item}
+                  className="item"
+                  animate={{ x: 0, y: 0 }}
+                  initial={{ x: -300 }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.1 }}
                 >
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                </div>
-                <ListItemText
-                  className={classes.hide}
-                  primary={
-                    <Typography
-                      className={classNames(classes.label)}
-                      variant="h6"
+                  <div className={classes.navItem}>
+                    <motion.div
+                      key={item.id}
+                      // autoFocus={item.id === firstTab ? true : false}
+                      className={classNames(
+                        classes.iconContainer,
+                        "column",
+                        activeTab === item.id
+                          ? classes.active
+                          : classes.nonActive
+                      )}
+                      onClick={() => tabClick(item.id)}
                     >
-                      {item.label}
-                    </Typography>
-                  }
-                />
-              </div>
-            ))}
-          </List>
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                    </motion.div>
+                    <ListItemText
+                      className={classes.hide}
+                      primary={
+                        <Typography
+                          className={classNames(classes.label)}
+                          variant="h6"
+                        >
+                          {item.label}
+                        </Typography>
+                      }
+                    />
+                  </div>
+                </motion.li>
+              ))}
+            </List>
+          </motion.ul>
         </div>
       </Drawer>
     </>

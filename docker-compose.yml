@@ -38,6 +38,7 @@ services:
     depends_on:
       - mysql-db
     environment:
+      LOCAL_MODE: 1
       <<: *common-variables
       MYSQL_HOST_IP: mysql-db
     ports:

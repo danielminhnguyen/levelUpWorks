@@ -24,6 +24,13 @@ export const scaleGrid = {
   // ssl: { ca: certificate },
 };
 
-const db = mysql.createConnection(scaleGrid);
+let database;
+if (process.env.LOCAL_MODE == 1) {
+  database = local;
+} else {
+  database = scaleGrid;
+}
+
+const db = mysql.createConnection(database);
 
 export default db;

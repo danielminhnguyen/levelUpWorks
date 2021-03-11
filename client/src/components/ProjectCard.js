@@ -26,8 +26,7 @@ const orange = "#F9B953";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 700,
-    overflow: "visible",
+    borderRadius: 20,
   },
   imageContainer: {
     zIndex: 99,
@@ -79,17 +78,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   progress: {
-    width: 150,
-    height: 30,
+    width: 170,
+    height: 40,
   },
   helpRequest: {
     position: "absolute",
-    right: 0,
-    transform: "tranlateX(10px)",
+    right: "-12px",
+    top: 20,
   },
   growth: {
     flexGrow: 1,
     justifyContent: "space-evenly",
+  },
+  barRoot: {
+    borderRadius: 10,
   },
 }));
 export default function ProjectCard(props) {
@@ -110,6 +112,7 @@ export default function ProjectCard(props) {
         className={classNames(classes.cardContainer)}
         onClick={handleCardClick}
         elevation={5}
+        classes={{ root: classes.root }}
       >
         <img
           className={classes.image}
@@ -123,9 +126,10 @@ export default function ProjectCard(props) {
           </div>
           <Typography variant="h2">P {getRandomInt(1, 30)}</Typography>
           <LinearProgress
+            classes={{ root: classes.barRoot }}
             className={classes.progress}
             variant="determinate"
-            value={50}
+            value={getRandomInt(10, 90)}
           />
         </div>
         {Math.random() < 0.5 ? (

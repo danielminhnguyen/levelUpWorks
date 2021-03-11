@@ -60,7 +60,11 @@ export default function ClassMenu() {
       ) : (
         <Grid container>
           <Grid item xs={6} className={classNames(classes.location)}>
-            <Typography variant="h4" className={classes.locationTitle}>
+            <Typography
+              variant="h4"
+              className={classes.locationTitle}
+              align="center"
+            >
               Botany Downs Library
             </Typography>
 
@@ -85,7 +89,11 @@ export default function ClassMenu() {
             </Grid>
           </Grid>
           <Grid item xs={6} className={classNames("column", classes.location)}>
-            <Typography variant="h4" className={classes.locationTitle}>
+            <Typography
+              variant="h4"
+              className={classes.locationTitle}
+              align="center"
+            >
               Epsom Girls Grammar School
             </Typography>
             <Grid container>

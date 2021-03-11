@@ -10,7 +10,8 @@ import React, { useEffect } from "react";
 
 import { ReactComponent as BackDrop } from "assets/img/backdrop.svg";
 import classNames from "classnames";
-import StudentCard from "components/StudentCard";
+import { motion } from "framer-motion";
+
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 // import { ProjectData } from "constants/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,9 +66,15 @@ export default function Projects() {
               <BackDrop />
             </div>
             <div>
-              <Typography variant="h2" align="left">
-                Welcome Back Alan!
-              </Typography>
+              <motion.h2
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <Typography variant="h2" align="left">
+                  Welcome Back Alan!
+                </Typography>
+              </motion.h2>
               <Typography variant="h5" align="left" className="row">
                 <MailOutlineIcon /> 5 new nofitications
               </Typography>
