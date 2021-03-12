@@ -1,23 +1,20 @@
+import React, { useState } from "react";
 import {
-  Button,
-  Card,
   Dialog,
   DialogActions,
   LinearProgress,
   Paper,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import classNames from "classnames";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveAltIcon from "@material-ui/icons/SaveAlt";
 import { timeFormat, dateFormat } from "utils";
-import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import PanToolIcon from "@material-ui/icons/PanTool";
 
+// images
 import BlankProfile from "assets/img/Students/blank-profile.png";
 import Profile from "mission6/Profile";
 

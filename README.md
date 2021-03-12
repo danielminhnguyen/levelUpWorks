@@ -109,7 +109,7 @@ You should be able to see it running in Docker
 ## Usage
 
 1. Navigate to [http://127.0.0.1:3000/](http://127.0.0.1:3000/) to view the front end
-2. Navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to modify the SQL through phpMyAdmin. A prebuilt database is located on db/levelUpWorks.sql. The default username/password is root/root
+2. Navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) to modify the SQL through phpMyAdmin. A prebuilt database is located on db/levelUpWorks.sql. The default username/password is root/root. If database does not import automatically, please do manually through phpAdmin
 3. Start coding and it should reflects change after saving.
 
 <!-- CONTRIBUTING -->
